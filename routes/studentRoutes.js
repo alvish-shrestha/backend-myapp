@@ -13,5 +13,3 @@ router.get(
 )
 
 module.exports = router
-
-// hello
