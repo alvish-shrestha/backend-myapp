@@ -6,7 +6,7 @@ exports.registerStudent = async (req, res) => {
     try {
         const existingUser = await Student.findOne(
             {
-                $or: [{ stuid: stuid }, { email: email }]
+                $or: [{ stuid: stuid }, { stu_email: stu_email }]
             }
         )
 
@@ -45,12 +45,13 @@ exports.registerStudent = async (req, res) => {
 
 exports.getAllStudents = async (req, res) => {
     try {
-        const allStudent = await Student.find()
-        if (allStudent) {
-            return res.status(201).json(
+        const allStudents = await Student.find()
+        if (allStudents) {
+            return res.status(200).json(
                 {
                     "success": true,
-                    "msg": "Students retrieved"
+                    "msg": "Students retrieved",
+                    "data": allStudents
                 }
             )
         }

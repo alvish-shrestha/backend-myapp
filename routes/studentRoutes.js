@@ -8,7 +8,7 @@ router.post(
 )
 
 router.get(
-    "/",
+    "/students",
     getAllStudents
 )
 
