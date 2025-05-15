@@ -1,6 +1,7 @@
 const express = require("express")
 const connectDB = require("./config/db")
 const userRoutes = require("./routes/userRoutes")
+const studentRoutes = require("./routes/studentRoutes")
 const app = express()
 
 // connection implementation
@@ -10,6 +11,7 @@ app.use(express.json()) // accept json in request
 
 // implement routes here
 app.use("/api/auth", userRoutes)
+app.use("/api/v1", studentRoutes)
 
 app.get("/",  // (/ -> root)
     (req, res) => {   // next ni hunxa

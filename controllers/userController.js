@@ -46,3 +46,23 @@ exports.registerUser = async (req, res) => {
         )
     }
 }
+
+// exports.gerUser = async (req, res) => {
+//     try {
+//         const users = User.find()
+//         return res.status(200).json(
+//             {
+//                 "success": true,
+//                 "message": "Data fetched"
+//                 "data": users
+//             }
+//         )
+//     } catch (e) {
+//         console.log(e);
+//         return res.status().json(
+//             {
+
+//             }
+//         )
+//     }
+// }

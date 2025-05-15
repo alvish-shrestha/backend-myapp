@@ -1,0 +1,13 @@
+task:
+
+create a model student
+stuid - unique, required
+stu_name
+stu_email - unique, required
+
+create a controller for student
+create 2 api
+create Student - check/validate also if empty or not
+getAll user - Model.find()
+
+create route and use it "/api/v1/students"
