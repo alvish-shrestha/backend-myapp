@@ -56,7 +56,8 @@ exports.getAllStudents = async (req, res) => {
             )
         }
     } catch (e) {
-        res.status(500).json(
+        console.log(e);
+        return res.status(500).json(
             {
                 "success": false,
                 "message": "Server Error"
