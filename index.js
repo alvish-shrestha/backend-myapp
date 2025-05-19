@@ -1,6 +1,10 @@
+require("dotenv").config()
+
 const express = require("express")
 const connectDB = require("./config/db")
 const userRoutes = require("./routes/userRoutes")
+const adminUserRoutes = require("./routes/admin/adminUserRoute")
+const adminStudentRoutes = require("./routes/admin/adminStudentRoute")
 const studentRoutes = require("./routes/studentRoutes")
 const app = express()
 
@@ -12,6 +16,8 @@ app.use(express.json()) // accept json in request
 // implement routes here
 app.use("/api/auth", userRoutes)
 app.use("/api/v1", studentRoutes)
+app.use("/api/admin/user", adminUserRoutes)
+app.use("/api/admin/student", adminStudentRoutes)
 
 app.get("/",  // (/ -> root)
     (req, res) => {   // next ni hunxa
@@ -169,8 +175,9 @@ app.delete("/blogs/:blogId",
     }
 )
 
+const PORT = process.env.PORT
 app.listen(
-    5050,
+    PORT,
     () => {
         console.log("Server running");
     }
