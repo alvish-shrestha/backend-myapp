@@ -19,3 +19,10 @@ create 5 api for students
 create findall, findone, updateone and deleteone
 create route and 
 use it "/api/admin/students"
+
+// --------------------------------------------------------------------------------------//
+
+create a new middleware isStudent
+check if user role is student or admin 
+create two user, one normal, one student
+apply the middlewares in all the get routes of studentRoute

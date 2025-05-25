@@ -15,6 +15,14 @@ const StudentSchema = new mongoose.Schema(
             required: true,
             unique: true
         },
+        role: {
+            type: String,
+            default: "normal"
+        },
+        role: {
+            type: String,
+            default: "student"
+        }
     },
     {
         timestamps: true  // userSchema batw halda timestamp pauxa katy bela create katy bela update gareko grxa
