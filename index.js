@@ -5,6 +5,8 @@ const connectDB = require("./config/db")
 const userRoutes = require("./routes/userRoutes")
 const adminUserRoutes = require("./routes/admin/adminUserRoute")
 const adminStudentRoutes = require("./routes/admin/adminStudentRoute")
+const adminCategoryRoutes = require("./routes/admin/adminCategoryRoute")
+const adminProductyRoutes = require("./routes/admin/adminProductRoute")
 const studentRoutes = require("./routes/studentRoutes")
 const app = express()
 
@@ -18,6 +20,8 @@ app.use("/api/auth", userRoutes)
 app.use("/api/v1", studentRoutes)
 app.use("/api/admin/user", adminUserRoutes)
 app.use("/api/admin/student", adminStudentRoutes)
+app.use("/api/admin/category", adminCategoryRoutes)
+app.use("/api/admin/product", adminProductyRoutes)
 
 app.get("/",  // (/ -> root)
     (req, res) => {   // next ni hunxa
