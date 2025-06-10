@@ -30,6 +30,7 @@ exports.createUser = async (req, res) => {
             )
         }
 
+        const filepath = req.file?.path
         const hashedPassword = await bcrypt.hash(password, 10) // 10 salt/complexity jaty badayo tety complex hudaii janxa
         const newUser = new User(
             {
@@ -37,7 +38,8 @@ exports.createUser = async (req, res) => {
                 email: email,
                 firstName: firstName,
                 lastName: lastName,
-                password: hashedPassword
+                password: hashedPassword,
+                filepath: filepath
             }
         )
         await newUser.save()

@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt") // maintain hashing for passwords
 const jwt = require("jsonwebtoken")
 
 exports.registerUser = async (req, res) => {
-    const { username, email, firstName, lastName, password } = req.body
+    const { username, email, firstName, lastName, password, role } = req.body
     try {
         const existingUser = await User.findOne(
             {
@@ -14,7 +14,7 @@ exports.registerUser = async (req, res) => {
         if (existingUser) {
             return res.status(400).json(
                 {
-                    "success": false, "msg": "User exists"
+                    "success": false, "message": "User exists"
                 }
             )
         }
@@ -27,7 +27,8 @@ exports.registerUser = async (req, res) => {
                 email: email,
                 firstName: firstName,
                 lastName: lastName,
-                password: hashedPassword
+                password: hashedPassword,
+                role: role
             }
         )
         
@@ -36,7 +37,7 @@ exports.registerUser = async (req, res) => {
         return res.status(201).json(
             {
                 "success": true,
-                "msg": "User registered"
+                "message": "User registered"
             }
         )
 

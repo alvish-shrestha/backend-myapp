@@ -8,12 +8,20 @@ const adminStudentRoutes = require("./routes/admin/adminStudentRoute")
 const adminCategoryRoutes = require("./routes/admin/adminCategoryRoute")
 const adminProductyRoutes = require("./routes/admin/adminProductRoute")
 const studentRoutes = require("./routes/studentRoutes")
+const path = require("path")
 const app = express()
+
+const cors = require("cors")
+let corsOptions = {
+    origin: "*" // can provide ist of domain
+}
+app.use(cors(corsOptions))
 
 // connection implementation
 connectDB()
 
 app.use(express.json()) // accept json in request
+app.use("/uploads", express.static(path.join(__dirname, "uploads")))
 
 // implement routes here
 app.use("/api/auth", userRoutes)

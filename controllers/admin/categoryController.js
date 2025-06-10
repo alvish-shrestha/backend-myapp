@@ -4,45 +4,19 @@ const bcrypt = require("bcrypt")
 
 // Create
 exports.createCategory = async (req, res) => {
-    const { name } = req.body
-    // validation
-    if (!name) {
-        return res.status(400).json(
-            {
-                "success": false,
-                "message": "Missing field"
-            }
-        )
-    }
-
     try {
-        const existingCategory = await Category.findOne(
-            {
-                $or: [{ name: name }]
-            }
-        )
-
-        if (existingCategory) {
-            return res.status(400).json(
-                {
-                    "success": false, "msg": "Category exists"
-                }
-            )
-        }
-
-        const newCategory = new Category(
-            {
-                name: name
-            }
-        )
-        await newCategory.save()
+        const filepath = req.file?.path
+        const category = new Category({ name: req.body.name, filepath: filepath });
+        await category.save()
         return res.status(201).json(
             {
-                "success": true,
-                "msg": "Category registered"
+                success : true ,
+                message : "Category added",
+                data : category
             }
         )
     } catch (e) {
+        console.log(e);
         return res.status(500).json(
             {
                 "success": false,

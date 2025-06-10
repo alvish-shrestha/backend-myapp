@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken")
 const User = require("../models/User")
 
-exports.authenticateUser = async (req, resizeBy, next) => {
+exports.authenticateUser = async (req, res, next) => {
     try {
         // Get token from header
         const authHeader = req.headers.authorization
@@ -33,7 +33,6 @@ exports.authenticateUser = async (req, resizeBy, next) => {
         return res.status(500).json(
             {
                 "success": false,
-
                 "message": "Authentication failed"
             }
         )
