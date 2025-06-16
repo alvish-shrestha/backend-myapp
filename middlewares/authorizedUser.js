@@ -30,6 +30,7 @@ exports.authenticateUser = async (req, res, next) => {
         req.user = user
         next() // continue to next function
     } catch (err) {
+        console.log(err)
         return res.status(500).json(
             {
                 "success": false,

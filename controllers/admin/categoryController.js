@@ -10,9 +10,9 @@ exports.createCategory = async (req, res) => {
         await category.save()
         return res.status(201).json(
             {
-                success : true ,
-                message : "Category added",
-                data : category
+                success: true,
+                message: "Category added",
+                data: category
             }
         )
     } catch (e) {
@@ -29,25 +29,26 @@ exports.createCategory = async (req, res) => {
 // Read All
 exports.getCategory = async (req, res) => {
     try {
-        const { page = 1, limit = 10, search = "" } = req. query
+        const { page = 1, limit = 10, search = "" } = req.query
 
         let filter = {}
 
         if (search) {
             filter.$or = [
-                    { name: 
-                        { 
-                            $regex: search, $options: "i"
-                        } 
+                {
+                    name:
+                    {
+                        $regex: search, $options: "i"
                     }
+                }
             ]
         }
 
         const skip = (page - 1) * limit
 
         const category = await Category.find(filter)
-                    .skip(skip)
-                    .limit(Number(limit))
+            .skip(skip)
+            .limit(Number(limit))
 
         const total = await Category.countDocuments(filter)
 
@@ -98,18 +99,21 @@ exports.getOneCategory = async (req, res) => {
 
 // update
 exports.updateOneCategory = async (req, res) => {
-    const { name } = req.body
     const _id = req.params.id
     try {
-        const category = await Category.updateOne(
-            {
-                "_id": _id
-            },
-            {
-                $set: {
-                    "name": name
-                }
-            }
+        const filename = req.file?.path
+        const data = {
+            name: req.body.name
+        }
+
+        if (filename) {
+            data.filepath = filename
+        }
+        
+        const category = await Category.findByIdAndUpdate(
+            req.params.id,
+            data,
+            { new: true }
         )
 
         return res.status(200).json(
@@ -119,6 +123,7 @@ exports.updateOneCategory = async (req, res) => {
             }
         )
     } catch (err) {
+        console.log(err);
         return res.status(500).json(
             {
                 "success": false,

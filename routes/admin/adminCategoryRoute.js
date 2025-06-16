@@ -23,6 +23,7 @@ router.get(
 
 router.put(
     "/:id", // req.params.id
+    upload.single("image"),
     updateOneCategory
 )
 
