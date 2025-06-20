@@ -101,6 +101,7 @@ exports.getOneCategory = async (req, res) => {
 exports.updateOneCategory = async (req, res) => {
     const _id = req.params.id
     try {
+        console.log(req.body);
         const filename = req.file?.path
         const data = {
             name: req.body.name
